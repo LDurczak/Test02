@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-16"?>gggg
+<Task version="1.4" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
+  <RegistrationInfo>
+    <Date>2021-04-08T15:04:56.1677331</Date>
+    <Author>MAINBASE\ldurczak</Author>
+    <URI>\Nas Health Check</URI>
+  </RegistrationInfo>
+  <Principals>
+    <Principal id="Author">
+      <UserId>S-1-5-21-3907958661-1296324515-1724590897-1001</UserId>
+      <LogonType>InteractiveToken</LogonType>
+      <RunLevel>HighestAvailable</RunLevel>
+    </Principal>
+  </Principals>
+  <Settings>
+    <DisallowStartIfOnBatteries>true</DisallowStartIfOnBatteries>
+    <StopIfGoingOnBatteries>true</StopIfGoingOnBatteries>
+    <ExecutionTimeLimit>PT1H</ExecutionTimeLimit>
+    <MultipleInstancesPolicy>StopExisting</MultipleInstancesPolicy>
+    <RestartOnFailure>
+      <Count>3</Count>
+      <Interval>PT10M</Interval>
+    </RestartOnFailure>
+    <IdleSettings>
+      <StopOnIdleEnd>true</StopOnIdleEnd>
+      <RestartOnIdle>false</RestartOnIdle>
+    </IdleSettings>
+    <UseUnifiedSchedulingEngine>true</UseUnifiedSchedulingEngine>
+  </Settings>
+  <Triggers>
+    <LogonTrigger>
+      <ExecutionTimeLimit>PT5M</ExecutionTimeLimit>
+      <Delay>PT2M</Delay>
+      <Repetition>
+        <Interval>PT4H</Interval>
+      </Repetition>
+      <UserId>MAINBASE\ldurczak</UserId>
+    </LogonTrigger>
+  </Triggers>
+  <Actions Context="Author">
+    <Exec>
+      <Command>powershell.exe</Command>
+      <Arguments>-windowstyle hidden -ExecutionPolicy Bypass -file "D:\Scripts\NASHealthCheck.ps1"</Arguments>
+    </Exec>
+  </Actions>
+</Task>
